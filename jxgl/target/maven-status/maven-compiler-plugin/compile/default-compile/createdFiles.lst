@@ -1,0 +1,15 @@
+rugal\sample\core\dao\impl\StudentDaoImpl.class
+rugal\sample\common\SystemDefaultProperties.class
+rugal\sample\core\entity\Student.class
+rugal\sample\core\service\StudentService.class
+rugal\sample\core\service\impl\StudentServiceImpl.class
+rugal\sample\common\CommonLogContent.class
+config\SpringMVCApplicationContext.class
+rugal\sample\springmvc\controller\StudentAction.class
+rugal\sample\common\Message.class
+rugal\sample\springmvc\interceptor\AuthenticationInterceptor.class
+rugal\sample\springmvc\controller\ExceptionAction.class
+config\ApplicationContext.class
+rugal\sample\core\dao\StudentDao.class
+rugal\sample\common\CommonMessageContent.class
+config\ServletContainerInitializer.class

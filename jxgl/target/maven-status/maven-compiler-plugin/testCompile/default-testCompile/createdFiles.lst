@@ -1,0 +1,8 @@
+rugal\sample\core\service\impl\StudentServiceImplTest.class
+rugal\JUnitSpringTestBase.class
+rugal\ControllerServerSideTestBase.class
+rugal\sample\core\dao\impl\StudentDaoImplTest.class
+rugal\sample\springmvc\controller\StudentActionClientSideTest.class
+rugal\ControllerClientSideTestBase.class
+rugal\sample\springmvc\controller\StudentActionTest.class
+rugal\sample\springmvc\controller\StudentActionServerSideTest.class
