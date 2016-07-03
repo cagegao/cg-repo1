@@ -32,73 +32,63 @@ import rugal.sample.springmvc.interceptor.AuthenticationInterceptor;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(
-    {
-        "rugal.sample.springmvc.controller"
-    })
-public class SpringMVCApplicationContext extends WebMvcConfigurerAdapter
-{
+@ComponentScan({ "rugal.sample.springmvc.controller" })
+public class SpringMVCApplicationContext extends WebMvcConfigurerAdapter {
 
-    @Autowired
-    private AuthenticationInterceptor authenticationInterceptor;
+	@Autowired
+	private AuthenticationInterceptor authenticationInterceptor;
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
-    {
-        configurer.enable();
-    }
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
 
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers)
-    {
-        argumentResolvers.add(new FormModelMethodArgumentResolver());
-    }
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		argumentResolvers.add(new FormModelMethodArgumentResolver());
+	}
 
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer)
-    {
-        configurer.favorPathExtension(false).favorParameter(false);
-        configurer.defaultContentType(MediaType.APPLICATION_JSON);
-        configurer.mediaType("json", MediaType.APPLICATION_JSON);
-    }
+	@Override
+	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+		configurer.favorPathExtension(false).favorParameter(false);
+		configurer.defaultContentType(MediaType.APPLICATION_JSON);
+		configurer.mediaType("json", MediaType.APPLICATION_JSON);
+	}
 
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
-    {
-        GsonHttpMessageConverter messageConverter = new GsonHttpMessageConverter();
-        List<MediaType> supportedMediaTypes = new ArrayList<>();
-        supportedMediaTypes.add(MediaType.APPLICATION_JSON);
-        messageConverter.setSupportedMediaTypes(supportedMediaTypes);
-        converters.add(messageConverter);
-    }
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		GsonHttpMessageConverter messageConverter = new GsonHttpMessageConverter();
+		List<MediaType> supportedMediaTypes = new ArrayList<>();
+		supportedMediaTypes.add(MediaType.APPLICATION_JSON);
+		messageConverter.setSupportedMediaTypes(supportedMediaTypes);
+		converters.add(messageConverter);
+	}
 
-//    @Bean
-//    public InternalResourceViewResolver viewResolver()
-//    {
-//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/pages/");
-//        resolver.setSuffix(".jsp");
-//        return resolver;
-//    }
-    @Bean
-    public HandlerAdapter annotationMethodHandlerAdapter()
-    {
-        return new RequestMappingHandlerAdapter();
-    }
+	// @Bean
+	// public InternalResourceViewResolver viewResolver()
+	// {
+	// InternalResourceViewResolver resolver = new
+	// InternalResourceViewResolver();
+	// resolver.setPrefix("/WEB-INF/pages/");
+	// resolver.setSuffix(".jsp");
+	// return resolver;
+	// }
+	@Bean
+	public HandlerAdapter annotationMethodHandlerAdapter() {
+		return new RequestMappingHandlerAdapter();
+	}
 
-    @Bean
-    public AbstractHandlerMapping defaultAnnotationHandlerMapping()
-    {
-        RequestMappingHandlerMapping mapping = new RequestMappingHandlerMapping();
-        mapping.setUseSuffixPatternMatch(false);
-        return mapping;
-    }
+	@Bean
+	public AbstractHandlerMapping defaultAnnotationHandlerMapping() {
+		RequestMappingHandlerMapping mapping = new RequestMappingHandlerMapping();
+		mapping.setUseSuffixPatternMatch(false);
+		return mapping;
+	}
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry)
-    {
-        //This is a very important interceptor for authentication usage
-        registry.addInterceptor(authenticationInterceptor).addPathPatterns("/**");
-    }
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		// This is a very important interceptor for authentication usage
+		registry.addInterceptor(authenticationInterceptor).addPathPatterns("/**");
+	}
 
 }

@@ -1,0 +1,5 @@
+/config/
+/hibernate.properties
+/jdbc.properties
+/log4j.properties
+/rugal/
